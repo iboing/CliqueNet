@@ -40,36 +40,16 @@ Tab 1. Updating rule in CliqueNet. "{}" denotes the concatenating operator.
 ## Usage
 
 
-
-asdsdf
+to update
 
 ## Ablation experiments
 
-asdsdf
+to update
 
 ## Comparision with state of the arts
 
-asdsdf
+to update
 
 ## Results on ImageNet
 
-
-
-### third title
-#### fourth titile
-
-
-
-
-add a figure
-
-
-
-
-
-add a table
-
-model-----|top1|top5
----|:--------:|:----------:
-aa|33%|33%
-gg|55%|66%
+to update
