@@ -92,7 +92,9 @@ Tab 2. Main results on CIFAR and SVHN without data augmentation.
 |||||
 |DenseNet(k=36,T=12)|0.96M|6.89|27.54|
 |CliqueNet(k=36,T=12)|0.94M|5.93|27.32|
-Tab 3.
+
+Tab 3. Experiments when k and T of CliqueNet and DenseNet are exactly the same.
+
 to update
 
 demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques(bottleneck, compression, etc.)
