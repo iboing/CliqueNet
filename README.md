@@ -30,7 +30,7 @@ CliqueNet is a newly proposed convolutional neural network architecture where an
 
 Fig 1. An illustration of a block with 4 layers. Node 0 denotes the input layer of this block.
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig2.JPG" width="80%" height="80%">
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig2.JPG" width="95%" height="95%">
 
 Fig 2. An overview of a CliqueNet with three blocks. 
 
@@ -53,9 +53,13 @@ Fig 3. Feature maps of Stage-I and Stage-II with the highest average activation 
 
 ## Comparision with state of the arts
 
-to update
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab2.JPG" width="50%" height="50%">
+
+Tab 2. Error rates (%) on CIFAR-10, CIFAR-100, and SVHN without any data augmentation. In CliqueNets and DenseNets, k is the number of filters per layer, and T is the total number of layers in three blocks. “A, B, C” represents attentional transition, bottleneck and compression, respectively. The FLOPs of DenseNets are calculated by ourselves.
 
 ## Results on ImageNet
 
-to update
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab3.JPG" width="50%" height="50%">
+
+Tab 3. Single crop error rates (%) on ImageNet. The * indicates the models without attentional transition.
 
