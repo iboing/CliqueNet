@@ -1,7 +1,7 @@
 # CliqueNet
 
 
-This repository is for the paper Convolutional Neural Networks with Alternately Updated Clique (to appear in CVPR 2018)
+This repository is for the paper [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018)
 
 by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.pku.edu.cn/faculty/vision/zlin/zlin.htm)
 
