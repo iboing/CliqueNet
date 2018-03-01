@@ -9,9 +9,9 @@ by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.
 If you find CliqueNet useful in your research, please consider citing:
 
 	@inproceedings{yang18,
-	 author={xxx},
+	 author={Yibo Yang and Zhisheng Zhong and Tiancheng Shen and Zhouchen Lin},
 	 title={Convolutional Neural Networks with Alternately Updated Clique},
-	 journal={CVPR},
+	 journal={arXiv preprint arXiv:1802.10419},
 	 year={2018}
 	}
 
