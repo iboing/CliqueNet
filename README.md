@@ -63,8 +63,9 @@ to update
 |CliqueNet(X=4)|5.20
 |CliqueNet(X=5)|5.12|23.98|
 
+to update
 
-
+demonstrate the effectiveness of CliqueNet's feature refinement.
 
 
 ## Comparision with state of the arts
@@ -79,7 +80,7 @@ to update
 |CliqueNet (k = 80, T = 15)          | 6.45G | 6.94M  |  5.10    |  23.32    | 1.56 |
 |CliqueNet (k = 80, T = 18)          | 9.45G | 10.14M |  5.06    |  23.14    | 1.51 |
 
-Tab 2. Main results in our paper.
+Tab 2. Main results on CIFAR and SVHN without data augmentation.
 
 |Model|Params|C10|C100|
 |---|---|---|---|
@@ -91,7 +92,10 @@ Tab 2. Main results in our paper.
 |||||
 |DenseNet(k=36,T=12)|0.96M|6.89|27.54|
 |CliqueNet(k=36,T=12)|0.94M|5.93|27.32|
+Tab 3.
+to update
 
+demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques(bottleneck, compression, etc.)
 
 ## Results on ImageNet
 
