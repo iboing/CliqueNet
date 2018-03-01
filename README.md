@@ -53,13 +53,25 @@ Fig 3. Feature maps of Stage-I and Stage-II with the highest average activation 
 
 ## Comparision with state of the arts
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab2.JPG" width="95%" height="95%">
+|Model                               | FLOPs | Params | CIFAR-10 | CIFAR-100 | SVHN |
+|------------------------------------| ------|--------| -------- |-----------|------|
+|DenseNet (k = 12, T = 36)           | 0.53G | 1.0M   | 7.00     |  27.55    | 1.79 |
+|DenseNet (k = 12, T = 96)           | 3.54G | 7.0M   | 5.77     |  23.79    | 1.67 |
+|DenseNet (k = 24, T = 96)           | 13.78G| 27.2M  | 5.83     |  23.42    | 1.59 |
+|------------------------------------| ------|--------| -------- |-----------|------|
+|CliqueNet (k = 36, T = 12)          | 0.91G | 0.94M  |5.93      |27.32      | 1.77 |
+|CliqueNet (k = 64, T = 15)          | 4.21G | 4.49M  |5.12      |23.98      | 1.62 |
+|CliqueNet (k = 80, T = 15)          | 6.45G | 6.94M  |5.10      |23.32      | 1.56 |
+|CliqueNet (k = 80, T = 18)          | 9.45G | 10.14M |5.06      |23.14      | 1.51 |
 
-Tab 2. Error rates (%) on CIFAR-10, CIFAR-100, and SVHN without any data augmentation. In CliqueNets and DenseNets, k is the number of filters per layer, and T is the total number of layers in three blocks. “A, B, C” represents attentional transition, bottleneck and compression, respectively. The FLOPs of DenseNets are calculated by ourselves.
+Tab 2. Error rates (%) on CIFAR-10, CIFAR-100, and SVHN without any data augmentation. In CliqueNets and DenseNets, k is the number of filters per layer, and T is the total number of layers in three blocks.
 
 ## Results on ImageNet
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab3.JPG" width="50%" height="50%">
 
 Tab 3. Single crop error rates (%) on ImageNet. The * indicates the models without attentional transition.
+
+
+
 
