@@ -47,6 +47,24 @@ to update
 
 ## Ablation experiments
 
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="40%" height="40%">
+
+|Model|block feature|transit|error(%)|
+|---|---|---|---|
+|CliqueNet(I+I)|X_0, Stage-I|Stage-I|6.64|
+|CliqueNet(I+II)|X_0, Stage-I|Stage-II|6.1|
+|CliqueNet(II+II)|X_0, Stage-II|Stage-II|5.76|
+
+
+|Model|C10|C100|
+|---|---|---|
+|CliqueNet(X=0)|5.83|24.79|
+|CliqueNet(X=2)|5.68|24.37|
+|CliqueNet(X=4)|5.20
+|CliqueNet(X=5)|5.12|23.98|
+
+
+
 
 
 ## Comparision with state of the arts
@@ -61,11 +79,20 @@ to update
 |CliqueNet (k = 80, T = 15)          | 6.45G | 6.94M  |  5.10    |  23.32    | 1.56 |
 |CliqueNet (k = 80, T = 18)          | 9.45G | 10.14M |  5.06    |  23.14    | 1.51 |
 
-Tab 2. Error rates (%) on CIFAR-10, CIFAR-100, and SVHN without any data augmentation. In CliqueNets and DenseNets, k is the number of filters per layer, and T is the total number of layers in three blocks.
+Tab 2. Main results in our paper.
+
+|Model|Params|C10|C100|
+|---|---|---|---|
+|DenseNet(k=12,T=36)|1.02M|7.00|27.55|
+|CliqueNet(k=12,T=36)|1.05M|5.79|26.85|
+|||||
+|DenseNet(k=24,T=18)|0.99M|7.13|27.70|
+|CliqueNet(k=24,T=18)|0.99M|6.04|26.57|
+|||||
+|DenseNet(k=36,T=12)|0.96M|6.89|27.54|
+|CliqueNet(k=36,T=12)|0.94M|5.93|27.32|
+
 
 ## Results on ImageNet
 
-
-
-
-
+to update
