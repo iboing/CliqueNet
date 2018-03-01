@@ -53,7 +53,7 @@ Fig 3. Feature maps of Stage-I and Stage-II with the highest average activation 
 
 ## Comparision with state of the arts
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab2.JPG" width="50%" height="50%">
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab2.JPG" width="95%" height="95%">
 
 Tab 2. Error rates (%) on CIFAR-10, CIFAR-100, and SVHN without any data augmentation. In CliqueNets and DenseNets, k is the number of filters per layer, and T is the total number of layers in three blocks. “A, B, C” represents attentional transition, bottleneck and compression, respectively. The FLOPs of DenseNets are calculated by ourselves.
 
