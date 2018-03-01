@@ -32,7 +32,7 @@ Fig 1. An illustration of a block with 4 layers. Node 0 denotes the input layer 
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig2.JPG" width="95%" height="95%">
 
-Fig 2. An overview of a CliqueNet with three blocks. 
+Fig 2. An overview of a CliqueNet with three blocks. The input layer together with the Stage-II feature in each block are concatenated to be the block feature, and form part of the final representation after global pooling. The Stage-II feature passes through transition layers, which include a convolution and an average pooling to change map size, and then becomes the input of the next block.
 
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab1.JPG" width="50%" height="50%">
