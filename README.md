@@ -47,7 +47,7 @@ to update
 
 ## Ablation experiments
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="40%" height="40%">
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="65%" height="65%">
 
 |Model|block feature|transit|error(%)|
 |---|---|---|---|
