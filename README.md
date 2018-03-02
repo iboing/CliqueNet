@@ -1,7 +1,7 @@
 # CliqueNet
 
 
-This repository is for the paper [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018)
+This repository is for the paper [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018).
 
 by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.pku.edu.cn/faculty/vision/zlin/zlin.htm)
 
@@ -54,19 +54,22 @@ python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [fi
 
 ## Ablation experiments
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="60%" height="60%">
+
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="55%" height="55%">
 
 |Model|block feature|transit|error(%)|
 |---|---|---|---|
-|CliqueNet(I+I)|X_0, Stage-I|Stage-I|6.64|
-|CliqueNet(I+II)|X_0, Stage-I|Stage-II|6.1|
-|CliqueNet(II+II)|X_0, Stage-II|Stage-II|5.76|
+|CliqueNet(I+I)|{ X_0, Stage-I }|Stage-I|6.64|
+|CliqueNet(I+II)|{ X_0, Stage-I }|Stage-II|6.1|
+|CliqueNet(II+II)|{ X_0, Stage-II }|Stage-II|5.76|
 
 
 |Model|C10|C100|
 |---|---|---|
 |CliqueNet(X=0)|5.83|24.79|
-|CliqueNet(X=2)|5.68|24.37|
+|CliqueNet(X=1)|5.63|24.65|
+|CliqueNet(X=2)|5.54|24.37|
+|CliqueNet(X=3)|5.41|
 |CliqueNet(X=4)|5.20
 |CliqueNet(X=5)|5.12|23.98|
 
