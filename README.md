@@ -30,24 +30,31 @@ CliqueNet is a newly proposed convolutional neural network architecture where an
 
 Fig 1. An illustration of a block with 4 layers. Node 0 denotes the input layer of this block.
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig2.JPG" width="95%" height="95%">
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig2.JPG" width="80%" height="80%">
 
-Fig 2. An overview of a CliqueNet with three blocks. The input layer together with the Stage-II feature in each block are concatenated to be the block feature, and form part of the final representation after global pooling. The Stage-II feature passes through transition layers, which include a convolution and an average pooling to change map size, and then becomes the input of the next block.
+Fig 2. An overview of a CliqueNet with three blocks.
 
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab1.JPG" width="50%" height="50%">
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab1.JPG" width="55%" height="55%">
 
-Tab 1. Updating rule in CliqueNet. "{}" denotes the concatenating operator.
+Tab 1. Alternate updating rule in CliqueNet. "{}" denotes the concatenating operator.
 
 
 
 ## Usage
 
-to update
+- Our experiments are conducted with [TensorFlow](https://github.com/tensorflow/tensorflow) in Python 2.
+- Clone this repo: `git clone https://github.com/iboing/CliqueNet`
+- An example to train a model on CIFAR or SVHN:
+```bash
+python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [filters per layer] --T [all layers of three blocks] --dir [path to save models]
+```
+- Additional techniques (optional): if you want to use attentional transition, bottleneck architecture, or compression strategy in our paper, add `--if_a True`, `--if_b True`, and `--if_c True`, respectively.
+
 
 ## Ablation experiments
 
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="65%" height="65%">
+<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="60%" height="60%">
 
 |Model|block feature|transit|error(%)|
 |---|---|---|---|

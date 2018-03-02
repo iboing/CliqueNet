@@ -85,6 +85,7 @@ def first_transit(input_layer, channels, strides, with_biase=False):
 
 
 def loop_block(input_layer, if_b, channels_per_layer, layer_num, is_train, keep_prob, block_name, loop_num=1):
+    if if_b: layer_num = layer_num/2 ## if bottleneck is used, the T value should be multiplied by 2.
     channels=channels_per_layer
     node_0_channels=input_layer.get_shape().as_list()[-1]
     ## init param
@@ -178,6 +179,7 @@ def loop_block(input_layer, if_b, channels_per_layer, layer_num, is_train, keep_
     return block_feature, transit_feature
 
 def loop_block_I_I(input_layer, if_b, channels_per_layer, layer_num, is_train, keep_prob, block_name):
+    if if_b: layer_num = layer_num/2 ## if bottleneck is used, the T value should be multiplied by 2.
     channels=channels_per_layer
     node_0_channels=input_layer.get_shape().as_list()[-1]
     ## init param
@@ -245,6 +247,7 @@ def loop_block_I_I(input_layer, if_b, channels_per_layer, layer_num, is_train, k
 
 
 def loop_block_I_II(input_layer, if_b, channels_per_layer, layer_num, is_train, keep_prob, block_name, loop_num=1):
+    if if_b: layer_num = layer_num/2 ## if bottleneck is used, the T value should be multiplied by 2.
     import copy
 
     channels=channels_per_layer
@@ -353,6 +356,7 @@ def loop_block_I_II(input_layer, if_b, channels_per_layer, layer_num, is_train, 
     
 
 def loop_block_X(input_layer, x_value, if_b, channels_per_layer, layer_num, is_train, keep_prob, block_name, loop_num=1):
+    if if_b: layer_num = layer_num/2 ## if bottleneck is used, the T value should be multiplied by 2.
     channels=channels_per_layer
     node_0_channels=input_layer.get_shape().as_list()[-1]
     ## init param
