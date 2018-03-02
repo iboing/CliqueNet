@@ -86,7 +86,7 @@ We further consider a situation where the feedback is not processed entirely. Co
 |CliqueNet(X=4)|5.20|
 |CliqueNet(X=5)|5.12|
 
-to run the experiments with different `X`, modify `train.py` as:
+To run the experiments with different `X`, modify `train.py` as:
 ```python
 from models.cliquenet_X import build_model
 ```
@@ -108,7 +108,7 @@ The results listed below demonstrate the superiority of CliqueNet over DenseNet 
 
 Tab 2. Main results on CIFAR and SVHN without data augmentation.
 
-Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNet and CliqueNet are exactly the same, see Tab3.
+Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab3.
 
 |Model|Params|C10|C100|
 |---|---|---|---|
