@@ -94,6 +94,8 @@ and set the value of `X` in `./models/cliquenet_X.py`
 
 ## Comparision with state of the arts
 
+The results listed below demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques(bottleneck, compression, etc.)
+
 |Model                               | FLOPs | Params | CIFAR-10 | CIFAR-100 | SVHN |
 |------------------------------------| ------|--------| -------- |-----------|------|
 |DenseNet (k = 12, T = 36)           | 0.53G | 1.0M   |  7.00    |  27.55    | 1.79 |
@@ -106,6 +108,8 @@ and set the value of `X` in `./models/cliquenet_X.py`
 
 Tab 2. Main results on CIFAR and SVHN without data augmentation.
 
+Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNet and CliqueNet are exactly the same.
+
 |Model|Params|C10|C100|
 |---|---|---|---|
 |DenseNet(k=12,T=36)|1.02M|7.00|27.55|
@@ -117,11 +121,11 @@ Tab 2. Main results on CIFAR and SVHN without data augmentation.
 |DenseNet(k=36,T=12)|0.96M|6.89|27.54|
 |CliqueNet(k=36,T=12)|0.94M|5.93|27.32|
 
-Tab 3. Experiments when k and T of CliqueNet and DenseNet are exactly the same.
+Tab 3. Comparisons with the same k and T.
 
-to update
+Note that the result of DenseNet(k=12, T=36) is reported by original paper. The others are implementated by ourselves under the same experimental settings.
 
-demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques(bottleneck, compression, etc.)
+
 
 ## Results on ImageNet
 
