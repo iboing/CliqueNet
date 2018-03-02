@@ -8,7 +8,7 @@ by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.
 ### citation
 If you find CliqueNet useful in your research, please consider citing:
 
-	@inproceedings{yang18,
+	@article{yang18,
 	 author={Yibo Yang and Zhisheng Zhong and Tiancheng Shen and Zhouchen Lin},
 	 title={Convolutional Neural Networks with Alternately Updated Clique},
 	 journal={arXiv preprint arXiv:1802.10419},
@@ -50,7 +50,7 @@ python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [fi
 
 ## Ablation experiments
 
-With the feedback connections, CliqueNet alternately re-update previous layers with updated layers, to enable refined features. The weights among layers are re-used for multiple times, so that a deeper representation space can be attained with a fixed number of parameters. In order to test the effectiveness of CliqueNet's feature refinement, we analyze the features generated in different stages by conducting experiments using different versions of CliqueNet. As illustrated by Fig2, the CliqueNet(I+I) only uses Stage-I feature. The CliqueNet(I+II) uses Stage-I feature concatenated with input layer as the block feature, but transits Stage-II feature into the next block. The CliqueNet(II+II) only uses refined features.
+With the feedback connections, CliqueNet alternately re-update previous layers with updated layers, to enable refined features. The weights among layers are re-used for multiple times, so that a deeper representation space can be attained with a fixed number of parameters. In order to test the effectiveness of CliqueNet's feature refinement, we analyze the features generated in different stages by conducting experiments using different versions of CliqueNet. As illustrated by Fig 2, the CliqueNet(I+I) only uses Stage-I feature. The CliqueNet(I+II) uses Stage-I feature concatenated with input layer as the block feature, but transits Stage-II feature into the next block. The CliqueNet(II+II) only uses refined features.
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="55%" height="55%">
 
@@ -74,7 +74,7 @@ from models.cliquenet_I_II import build_model
 ```
 for CliqueNet(I+II).
 
-We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Tab1. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
+We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Tab 1. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
 
 
 |Model|CIFAR-10 | CIFAR-100|
@@ -108,7 +108,7 @@ The results listed below demonstrate the superiority of CliqueNet over DenseNet 
 
 Tab 2. Main results on CIFAR and SVHN without data augmentation.
 
-Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab3.
+Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab 3.
 
 |Model|Params|CIFAR-10 | CIFAR-100|
 |---|---|---|---|
