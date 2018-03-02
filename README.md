@@ -53,6 +53,7 @@ python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [fi
 With the feedback connections, CliqueNet alternately re-update previous layers with updated layers, to enable refined features. The weights among layers are re-used for multiple times, so that a deeper representation space can be attained with a fixed number of parameters. In order to test the effectiveness of CliqueNet's feature refinement, we analyze the features generated in different stages by conducting experiments using different versions of CliqueNet. As illustrated by Fig2, the CliqueNet(I+I) only uses Stage-I feature. The CliqueNet(I+II) uses Stage-I feature concatenated with input layer as the block feature, but transits Stage-II feature into the next block. The CliqueNet(II+II) only uses refined features.
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="55%" height="55%">
+
 Fig 2. A schema for CliqueNet(i+j), i,j belong to {I,II}.
 
 |Model|block feature|transit|error(%)|
@@ -60,6 +61,7 @@ Fig 2. A schema for CliqueNet(i+j), i,j belong to {I,II}.
 |CliqueNet(I+I)|{ X_0, Stage-I }|Stage-I|6.64|
 |CliqueNet(I+II)|{ X_0, Stage-I }|Stage-II|6.1|
 |CliqueNet(II+II)|{ X_0, Stage-II }|Stage-II|5.76|
+
 Tab 2. Resutls of different versions of CliqueNets.
 
 To run the experiments above, please modify `train.py` as:
