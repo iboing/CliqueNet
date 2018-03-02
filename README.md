@@ -94,7 +94,7 @@ and set the value of `X` in `./models/cliquenet_X.py`
 
 ## Comparision with state of the arts
 
-The results listed below demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques(bottleneck, compression, etc.)
+The results listed below demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques (bottleneck, compression, etc.).
 
 |Model                               | FLOPs | Params | CIFAR-10 | CIFAR-100 | SVHN |
 |------------------------------------| ------|--------| -------- |-----------|------|
@@ -108,7 +108,7 @@ The results listed below demonstrate the superiority of CliqueNet over DenseNet 
 
 Tab 2. Main results on CIFAR and SVHN without data augmentation.
 
-Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNet and CliqueNet are exactly the same.
+Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNet and CliqueNet are exactly the same, see Tab3.
 
 |Model|Params|C10|C100|
 |---|---|---|---|
