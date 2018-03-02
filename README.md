@@ -1,9 +1,9 @@
 # CliqueNet
 
 
-This repository is for the paper [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018).
+This repository is for the paper [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018),
 
-by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.pku.edu.cn/faculty/vision/zlin/zlin.htm)
+by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.pku.edu.cn/faculty/vision/zlin/zlin.htm).
 
 ### citation
 If you find CliqueNet useful in your research, please consider citing:
@@ -23,16 +23,12 @@ If you find CliqueNet useful in your research, please consider citing:
 - [Results on ImageNet](#results-on-imagenet)
 
 ## Introduction
-CliqueNet is a newly proposed convolutional neural network architecture where any pair of layers in the same block are connected bilaterally (Fig 1). Any layer is both the input and output another one, and information flow can be maximized. During propagation, the layers are updated alternately (Tab 1), so that each layer will always receive the feedback information from the layers that are updated more lately. We show that the refined features are more discriminative and lead to a better performance. On benchmark classification datasets including CIFAR-10, CIFAR-100, SVHN, and ILSVRC 2012, we achieve better or comparable results over state of the arts with fewer parameters.
+CliqueNet is a newly proposed convolutional neural network architecture where any pair of layers in the same block are connected bilaterally (Fig 1). Any layer is both the input and output another one, and information flow can be maximized. During propagation, the layers are updated alternately (Tab 1), so that each layer will always receive the feedback information from the layers that are updated more lately. We show that the refined features are more discriminative and lead to a better performance. On benchmark classification datasets including CIFAR-10, CIFAR-100, SVHN, and ILSVRC 2012, we achieve better or comparable results over state of the arts with fewer parameters. This repo contains the code of our project, and also provides some experimental results that are out of the paper.
 
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig1.JPG" width="40%" height="40%">
 
 Fig 1. An illustration of a block with 4 layers. Node 0 denotes the input layer of this block.
-
-<div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig2.JPG" width="80%" height="80%">
-
-Fig 2. An overview of a CliqueNet with three blocks.
 
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab1.JPG" width="55%" height="55%">
@@ -54,14 +50,29 @@ python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [fi
 
 ## Ablation experiments
 
+With the feedback connections, CliqueNet alternately re-update previous layers with updated layers, to enable refined features. The weights among layers are re-used for multiple times, so that a deeper representation space can be attained with a fixed number of parameters. In order to test the effectiveness of CliqueNet's feature refinement, we analyze the features generated in different stages by conducting experiments using different versions of CliqueNet. As illustrated by Fig2, the CliqueNet(I+I) only uses Stage-I feature. The CliqueNet(I+II) uses Stage-I feature concatenated with input layer as the block feature, but transits Stage-II feature into the next block. The CliqueNet(II+II) only uses refined features.
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="55%" height="55%">
+Fig 2. A schema for CliqueNet(i+j), i,j belong to {I,II}.
 
 |Model|block feature|transit|error(%)|
 |---|---|---|---|
 |CliqueNet(I+I)|{ X_0, Stage-I }|Stage-I|6.64|
 |CliqueNet(I+II)|{ X_0, Stage-I }|Stage-II|6.1|
 |CliqueNet(II+II)|{ X_0, Stage-II }|Stage-II|5.76|
+Tab 2. Resutls of different versions of CliqueNets.
+
+To run the experiments above, please modify `train.py` as:
+```python
+from models.cliquenet_I_I import build_model
+```
+for CliqueNet(I+I), and
+```python
+from models.cliquenet_I_II import build_model
+```
+for CliqueNet(I+II).
+
+We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `x` steps, see Tab1. Then `x=0` is just the case of CliqueNet(I+I), and `x=5` corresponds to CliqueNet(II+II).
 
 
 |Model|C10|C100|
@@ -70,13 +81,14 @@ python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [fi
 |CliqueNet(X=1)|5.63|24.65|
 |CliqueNet(X=2)|5.54|24.37|
 |CliqueNet(X=3)|5.41|
-|CliqueNet(X=4)|5.20
-|CliqueNet(X=5)|5.12|23.98|
+|CliqueNet(X=4)|5.20|
+|CliqueNet(X=5)|5.12|
 
-to update
-
-demonstrate the effectiveness of CliqueNet's feature refinement.
-
+to run the experiments with different `x`, modify `train.py` as:
+```python
+from models.cliquenet_X import build_model
+```
+and set the value of `x` in `./models/cliquenet_X.py`
 
 ## Comparision with state of the arts
 
