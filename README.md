@@ -74,7 +74,7 @@ from models.cliquenet_I_II import build_model
 ```
 for CliqueNet(I+II).
 
-We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `x` steps, see Tab1. Then `x=0` is just the case of CliqueNet(I+I), and `x=5` corresponds to CliqueNet(II+II).
+We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Tab1. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
 
 
 |Model|C10|C100|
@@ -86,11 +86,11 @@ We further consider a situation where the feedback is not processed entirely. Co
 |CliqueNet(X=4)|5.20|
 |CliqueNet(X=5)|5.12|
 
-to run the experiments with different `x`, modify `train.py` as:
+to run the experiments with different `X`, modify `train.py` as:
 ```python
 from models.cliquenet_X import build_model
 ```
-and set the value of `x` in `./models/cliquenet_X.py`
+and set the value of `X` in `./models/cliquenet_X.py`
 
 ## Comparision with state of the arts
 
