@@ -77,7 +77,7 @@ for CliqueNet(I+II).
 We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Tab1. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
 
 
-|Model|C10|C100|
+|Model|CIFAR-10 | CIFAR-100|
 |---|---|---|
 |CliqueNet(X=0)|5.83|24.79|
 |CliqueNet(X=1)|5.63|24.65|
@@ -98,9 +98,9 @@ The results listed below demonstrate the superiority of CliqueNet over DenseNet 
 
 |Model                               | FLOPs | Params | CIFAR-10 | CIFAR-100 | SVHN |
 |------------------------------------| ------|--------| -------- |-----------|------|
-|DenseNet (k = 12, T = 36)           | 0.53G | 1.0M   |  7.00    |  27.55    | 1.79 |
-|DenseNet (k = 12, T = 96)           | 3.54G | 7.0M   |  5.77    |  23.79    | 1.67 |
-|DenseNet (k = 24, T = 96)           | 13.78G| 27.2M  |  5.83    |  23.42    | 1.59 |
+|DenseNet  (k = 12, T = 36)          | 0.53G | 1.0M   |  7.00    |  27.55    | 1.79 |
+|DenseNet  (k = 12, T = 96)          | 3.54G | 7.0M   |  5.77    |  23.79    | 1.67 |
+|DenseNet  (k = 24, T = 96)          | 13.78G| 27.2M  |  5.83    |  23.42    | 1.59 |
 |CliqueNet (k = 36, T = 12)          | 0.91G | 0.94M  |  5.93    |  27.32    | 1.77 |
 |CliqueNet (k = 64, T = 15)          | 4.21G | 4.49M  |  5.12    |  23.98    | 1.62 |
 |CliqueNet (k = 80, T = 15)          | 6.45G | 6.94M  |  5.10    |  23.32    | 1.56 |
@@ -110,7 +110,7 @@ Tab 2. Main results on CIFAR and SVHN without data augmentation.
 
 Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab3.
 
-|Model|Params|C10|C100|
+|Model|Params|CIFAR-10 | CIFAR-100|
 |---|---|---|---|
 |DenseNet(k=12,T=36)|1.02M|7.00|27.55|
 |CliqueNet(k=12,T=36)|1.05M|5.79|26.85|
