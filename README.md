@@ -23,7 +23,7 @@ If you find CliqueNet useful in your research, please consider citing:
 - [Results on ImageNet](#results-on-imagenet)
 
 ## Introduction
-CliqueNet is a newly proposed convolutional neural network architecture where any pair of layers in the same block are connected bilaterally (Fig 1). Any layer is both the input and output another one, and information flow can be maximized. During propagation, the layers are updated alternately (Tab 1), so that each layer will always receive the feedback information from the layers that are updated more lately. We show that the refined features are more discriminative and lead to a better performance. On benchmark classification datasets including CIFAR-10, CIFAR-100, SVHN, and ILSVRC 2012, we achieve better or comparable results over state of the arts with fewer parameters. This repo contains the code of our project, and also provides some experimental results that are out of the paper.
+CliqueNet is a newly proposed convolutional neural network architecture where any pair of layers in the same block are connected bilaterally (Fig 1). Any layer is both the input and output another one, and information flow can be maximized. During propagation, the layers are updated alternately (Fig 2), so that each layer will always receive the feedback information from the layers that are updated more lately. We show that the refined features are more discriminative and lead to a better performance. On benchmark classification datasets including CIFAR-10, CIFAR-100, SVHN, and ILSVRC 2012, we achieve better or comparable results over state of the arts with fewer parameters. This repo contains the code of our project, and also provides some experimental results that are out of the paper.
 
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig1.JPG" width="40%" height="40%">
@@ -33,7 +33,7 @@ Fig 1. An illustration of a block with 4 layers. Node 0 denotes the input layer 
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/tab1.JPG" width="55%" height="55%">
 
-Tab 1. Alternate updating rule in CliqueNet. "{}" denotes the concatenating operator.
+Fig 2. Alternate updating rule in CliqueNet. "{}" denotes the concatenating operator.
 
 
 
@@ -50,11 +50,11 @@ python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [fi
 
 ## Ablation experiments
 
-With the feedback connections, CliqueNet alternately re-update previous layers with updated layers, to enable refined features. The weights among layers are re-used for multiple times, so that a deeper representation space can be attained with a fixed number of parameters. In order to test the effectiveness of CliqueNet's feature refinement, we analyze the features generated in different stages by conducting experiments using different versions of CliqueNet. As illustrated by Fig 2, the CliqueNet(I+I) only uses Stage-I feature. The CliqueNet(I+II) uses Stage-I feature concatenated with input layer as the block feature, but transits Stage-II feature into the next block. The CliqueNet(II+II) only uses refined features.
+With the feedback connections, CliqueNet alternately re-update previous layers with updated layers, to enable refined features. The weights among layers are re-used for multiple times, so that a deeper representation space can be attained with a fixed number of parameters. In order to test the effectiveness of CliqueNet's feature refinement, we analyze the features generated in different stages by conducting experiments using different versions of CliqueNet. As illustrated by Fig 3, the CliqueNet(I+I) only uses Stage-I feature. The CliqueNet(I+II) uses Stage-I feature concatenated with input layer as the block feature, but transits Stage-II feature into the next block. The CliqueNet(II+II) only uses refined features.
 
 <div align=left><img src="https://raw.githubusercontent.com/iboing/CliqueNet/master/img/fig3.JPG" width="55%" height="55%">
 
-Fig 2. A schema for CliqueNet(i+j), i,j belong to {I,II}.
+Fig 3. A schema for CliqueNet(i+j), i,j belong to {I,II}.
 
 |Model|block feature|transit|error(%)|
 |---|---|---|---|
@@ -62,7 +62,7 @@ Fig 2. A schema for CliqueNet(i+j), i,j belong to {I,II}.
 |CliqueNet(I+II)|{ X_0, Stage-I }|Stage-II|6.1|
 |CliqueNet(II+II)|{ X_0, Stage-II }|Stage-II|5.76|
 
-Tab 2. Resutls of different versions of CliqueNets.
+Tab 1. Resutls of different versions of CliqueNets.
 
 To run the experiments above, please modify `train.py` as:
 ```python
@@ -74,7 +74,7 @@ from models.cliquenet_I_II import build_model
 ```
 for CliqueNet(I+II).
 
-We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Tab 1. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
+We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Fig 2. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
 
 
 |Model|CIFAR-10 | CIFAR-100|
@@ -82,9 +82,11 @@ We further consider a situation where the feedback is not processed entirely. Co
 |CliqueNet(X=0)|5.83|24.79|
 |CliqueNet(X=1)|5.63|24.65|
 |CliqueNet(X=2)|5.54|24.37|
-|CliqueNet(X=3)|5.41|
-|CliqueNet(X=4)|5.20|
-|CliqueNet(X=5)|5.12|
+|CliqueNet(X=3)|5.41|23.84|
+|CliqueNet(X=4)|5.20|24.04|
+|CliqueNet(X=5)|5.12|23.73|
+
+Tab 2. Performance of CliqueNets with different `X`.
 
 To run the experiments with different `X`, modify `train.py` as:
 ```python
@@ -106,9 +108,9 @@ The results listed below demonstrate the superiority of CliqueNet over DenseNet 
 |CliqueNet (k = 80, T = 15)          | 6.45G | 6.94M  |  5.10    |  23.32    | 1.56 |
 |CliqueNet (k = 80, T = 18)          | 9.45G | 10.14M |  5.06    |  23.14    | 1.51 |
 
-Tab 2. Main results on CIFAR and SVHN without data augmentation.
+Tab 3. Main results on CIFAR and SVHN without data augmentation.
 
-Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab 3.
+Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab 4.
 
 |Model|Params|CIFAR-10 | CIFAR-100|
 |---|---|---|---|
@@ -121,7 +123,7 @@ Because larger T would lead to higher computation cost and slightly more paramet
 |DenseNet(k=36,T=12)|0.96M|6.89|27.54|
 |CliqueNet(k=36,T=12)|0.94M|5.93|27.32|
 
-Tab 3. Comparisons with the same k and T.
+Tab 4. Comparisons with the same k and T.
 
 Note that the result of DenseNet(k=12, T=36) is reported by original paper. The others are implementated by ourselves under the same experimental settings.
 
