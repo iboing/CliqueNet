@@ -137,6 +137,6 @@ Note that the result of DenseNet(k=12, T=36) is reported by original paper. The 
 - An example to train a model on ImageNet:
 
 ```bash
-python train_imagenet.py --gpu [gpu ids (default: '0,1,2,3')] --workers [number of data loading workers (default: 8)] --epochs [number of total epochs to run (default: 100)] --start-epoch ]manual epoch number (useful on restarts)] --batch-size [mini-batch size (default: 200)] --learning-rate [initial learning rate (default: 0.1)] --momentum [momentum (default: 0.9)] --weight-decay [weight decay (default: 1e-4)] --resume [path to latest checkpoint model (default: './cliquenet_s0.pth.tar')] --save [path to save models] --evaluate(evaluate model on validation set) --pretrained(use pre-trained model) [data:path to the imagenet dataset] ]
+python train_imagenet.py --gpu [gpu ids (default: '0,1,2,3')] --workers [number of data loading workers (default: 8)] --epochs [number of total epochs to run (default: 100)] --start-epoch [manual epoch number (useful on restarts)] --batch-size [mini-batch size (default: 200)] --learning-rate [initial learning rate (default: 0.1)] --momentum [momentum (default: 0.9)] --weight-decay [weight decay (default: 1e-4)] --resume [path to latest checkpoint model (default: './cliquenet_s0.pth.tar')] --save [path to save models] --evaluate(evaluate model on validation set) --pretrained(use pre-trained model) [data:path to the imagenet dataset] ]
 ```
 
