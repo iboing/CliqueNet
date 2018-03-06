@@ -56,11 +56,11 @@ With the feedback connections, CliqueNet alternately re-update previous layers w
 
 Fig 3. A schema for CliqueNet(i+j), i,j belong to {I,II}.
 
-|Model|block feature|transit|error(%)|
-|---|---|---|---|
-|CliqueNet(I+I)|{ X_0, Stage-I }|Stage-I|6.64|
-|CliqueNet(I+II)|{ X_0, Stage-I }|Stage-II|6.1|
-|CliqueNet(II+II)|{ X_0, Stage-II }|Stage-II|5.76|
+|Model            |block feature    |transit |error(%)|
+|-----------------|-----------------|--------|--------|
+|CliqueNet(I+I)   |{ X_0, Stage-I } |Stage-I |6.64    |
+|CliqueNet(I+II)  |{ X_0, Stage-I } |Stage-II|6.10    |
+|CliqueNet(II+II) |{ X_0, Stage-II }|Stage-II|5.76    |
 
 Tab 1. Resutls of different versions of CliqueNets.
 
@@ -77,8 +77,8 @@ for CliqueNet(I+II).
 We further consider a situation where the feedback is not processed entirely. Concretely, when k=64 and T=15, we use the Stage-II feature, but only the first `X` steps, see Fig 2. Then `X=0` is just the case of CliqueNet(I+I), and `X=5` corresponds to CliqueNet(II+II).
 
 
-|Model|CIFAR-10 | CIFAR-100|
-|---|---|---|
+|Model|CIFAR-10| CIFAR-100|
+|--------------|----|-----|
 |CliqueNet(X=0)|5.83|24.79|
 |CliqueNet(X=1)|5.63|24.65|
 |CliqueNet(X=2)|5.54|24.37|
@@ -103,6 +103,7 @@ The results listed below demonstrate the superiority of CliqueNet over DenseNet 
 |DenseNet  (k = 12, T = 36)          | 0.53G | 1.0M   |  7.00    |  27.55    | 1.79 |
 |DenseNet  (k = 12, T = 96)          | 3.54G | 7.0M   |  5.77    |  23.79    | 1.67 |
 |DenseNet  (k = 24, T = 96)          | 13.78G| 27.2M  |  5.83    |  23.42    | 1.59 |
+|                                    |       |        |          |           |      |
 |CliqueNet (k = 36, T = 12)          | 0.91G | 0.94M  |  5.93    |  27.32    | 1.77 |
 |CliqueNet (k = 64, T = 15)          | 4.21G | 4.49M  |  5.12    |  23.98    | 1.62 |
 |CliqueNet (k = 80, T = 15)          | 6.45G | 6.94M  |  5.10    |  23.32    | 1.56 |
@@ -113,14 +114,14 @@ Tab 3. Main results on CIFAR and SVHN without data augmentation.
 Because larger T would lead to higher computation cost and slightly more parameters, we prefer using a larger k in our experiments. To make comparisons more fair, we also consider the situation where k and T of DenseNets and CliqueNets are exactly the same, see Tab 4.
 
 |Model|Params|CIFAR-10 | CIFAR-100|
-|---|---|---|---|
-|DenseNet(k=12,T=36)|1.02M|7.00|27.55|
+|--------------------|-----|----|-----|
+|DenseNet(k=12,T=36) |1.02M|7.00|27.55|
 |CliqueNet(k=12,T=36)|1.05M|5.79|26.85|
-|||||
-|DenseNet(k=24,T=18)|0.99M|7.13|27.70|
+|                    |     |    |     |
+|DenseNet(k=24,T=18) |0.99M|7.13|27.70|
 |CliqueNet(k=24,T=18)|0.99M|6.04|26.57|
-|||||
-|DenseNet(k=36,T=12)|0.96M|6.89|27.54|
+|                    |     |    |     |
+|DenseNet(k=36,T=12) |0.96M|6.89|27.54|
 |CliqueNet(k=36,T=12)|0.94M|5.93|27.32|
 
 Tab 4. Comparisons with the same k and T.
@@ -134,5 +135,5 @@ Our code for experiments on ImageNet with TensorFlow will be released soon.
 
 Here we provide a [PyTorch](http://pytorch.org) version to train a CliqueNet on ImageNet. An example to train:
 ```Python
-python train_imagenet.py [ImageNet datafolder]
+python train_imagenet.py [path to the imagenet dataset]
 ```
