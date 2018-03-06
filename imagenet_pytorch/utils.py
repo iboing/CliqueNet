@@ -176,7 +176,7 @@ class CliqueNet(nn.Module):
                 self.list_gb_channel.append(list_channels[i-1] * list_layer_num[i-1] + list_channels[i] * list_layer_num[i])
 
             if i < self.block_num - 1:
-            self.list_trans.append(transition(input_channels=list_channels[i] * list_layer_num[i], keep_prob=0.8))
+                self.list_trans.append(transition(input_channels=list_channels[i] * list_layer_num[i], keep_prob=0.8))
 
             self.list_gb.append(global_pool(input_size=input_size_init, input_channels=list_gb_channel[i] // 2))
             self.list_compress.append(compress(input_channels=list_gb_channel[i], keep_prob=0.8))
