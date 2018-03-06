@@ -16,8 +16,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
 
-import imagenet_pytorch.utils
-import imagenet_pytorch.cliquenet
+import imagenet_pytorch.cliquenet as cliquenet
 
 
 parser = argparse.ArgumentParser(description='CliqueNet ImageNet Training')
