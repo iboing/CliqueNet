@@ -137,7 +137,6 @@ class clique_block(nn.Module):
                 top_blob = F.relu(top_blob)
                 top_blob = F.conv2d(top_blob, self.conv_param_bottle[layer_id - 1].weight, stride = 1, padding = 1)
                 self.blob_dict[str(layer_id)] = top_blob
-                # self.blob_dict[str(layer_id)] = F.dropout2d(top_blob, self.keep_prob)
             self.blob_dict_list.append(self.blob_dict)
         
         assert len(self.blob_dict_list) == 1 + self.loop_num
@@ -156,54 +155,34 @@ class clique_block(nn.Module):
 class CliqueNet(nn.Module):
     def __init__(self, input_channels, list_channels, list_layer_num):
         super(CliqueNet, self).__init__()
-        self.fir_trans = nn.Conv2d(3, input_channels, kernel_size = 7, stride = 2, padding = 3, bias = False)
+        self.fir_trans = nn.Conv2d(3, input_channels, kernel_size=7, stride=2, padding=3, bias=False)
         self.fir_bn = nn.BatchNorm2d(input_channels)
-        self.fir_pool = nn.MaxPool2d(kernel_size = 3, stride = 2, padding = 1)
+        self.fir_pool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
         self.block_num = len(list_channels)
 
-        self.list_block = []
-        self.list_trans = []   
-        self.list_gb = []
+        self.list_block = nn.ModuleList()
+        self.list_trans = nn.ModuleList()  
+        self.list_gb = nn.ModuleList()
         self.list_gb_channel = []
-        self.list_compress = []
+        self.list_compress = nn.ModuleList()
         input_size_init = 56
+
         for i in xrange(len(block_num)):
             if i == 0:
-                self.list_block.append(Clique_block(input_channels = input_channels, channels_per_layer = list_channels[0], layer_num = list_layer_num[0], loop_num = 1, keep_prob = 0.8))
+                self.list_block.append(Clique_block(input_channels=input_channels, channels_per_layer=list_channels[0], layer_num=list_layer_num[0], loop_num=1, keep_prob=0.8))
                 self.list_gb_channel.append(input_channels + list_channels[0] * list_layer_num[0])
             else :
-                self.list_block.append(Clique_block(input_channels = list_channels[i-1] * list_layer_num[i-1], channels_per_layer = list_channels[i], layer_num = list_layer_num[i], loop_num = 1, keep_prob = 0.8))
+                self.list_block.append(Clique_block(input_channels=list_channels[i-1] * list_layer_num[i-1], channels_per_layer=list_channels[i], layer_num=list_layer_num[i], loop_num=1, keep_prob=0.8))
                 self.list_gb_channel.append(list_channels[i-1] * list_layer_num[i-1] + list_channels[i] * list_layer_num[i])
-            self.list_trans.append(transition(input_channels = list_channels[i] * list_layer_num[i], keep_prob = 0.8))
-            self.list_gb.append(global_pool(input_size = input_size_init, input_channels = list_gb_channel[i] // 2))
-            self.list_compress.append(compress(input_channels = list_gb_channel[i], keep_prob = 0.8))
+
+            if i < self.block_num - 1:
+            self.list_trans.append(transition(input_channels=list_channels[i] * list_layer_num[i], keep_prob=0.8))
+
+            self.list_gb.append(global_pool(input_size=input_size_init, input_channels=list_gb_channel[i] // 2))
+            self.list_compress.append(compress(input_channels=list_gb_channel[i], keep_prob=0.8))
             input_size_init = input_size_init // 2
 
-
-        # self.block1 = Clique_block(input_channels = input_channels, channels_per_layer = list_channels[0], layer_num = list_layer_num[0], loop_num = 1, keep_prob = 0.8)
-        # self.block2 = Clique_block(input_channels = list_channels[0] * list_layer_num[0], channels_per_layer = list_channels[1], layer_num = list_layer_num[1], loop_num = 1, keep_prob = 0.8)
-        # self.block3 = Clique_block(input_channels = list_channels[1] * list_layer_num[1], channels_per_layer = list_channels[2], layer_num = list_layer_num[2], loop_num = 1, keep_prob = 0.8)
-        # self.block4 = Clique_block(input_channels = list_channels[2] * list_layer_num[2], channels_per_layer = list_channels[3], layer_num = list_layer_num[3], loop_num = 1, keep_prob = 0.8)
-        
-        # self.trans1 = transition(input_channels = list_channels[0] * list_layer_num[0], keep_prob = 0.8)
-        # self.trans2 = transition(input_channels = list_channels[1] * list_layer_num[1], keep_prob = 0.8)
-        # self.trans3 = transition(input_channels = list_channels[2] * list_layer_num[2], keep_prob = 0.8)
-
-        # gl_channels1 = input_channels + list_channels[0] * list_layer_num[0]
-        # self.gp1 = global_pool(input_size = 56, input_channels = gl_channels1 // 2)
-        # gl_channels2 = list_channels[0] * list_layer_num[0] + list_channels[1] * list_layer_num[1]
-        # self.gp2 = global_pool(input_size = 28, input_channels = gl_channels2 // 2)
-        # gl_channels3 = list_channels[1] * list_layer_num[1] + list_channels[2] * list_layer_num[2]
-        # self.gp3 = global_pool(input_size = 14, input_channels = gl_channels3 // 2)
-        # gl_channels4 = list_channels[2] * list_layer_num[2] + list_channels[3] * list_layer_num[3]
-        # self.gp4 = global_pool(input_size = 7, input_channels = gl_channels4 // 2)
-
-        # self.comp1 = compress(input_channels = gl_channels1, keep_prob = 0.8)
-        # self.comp2 = compress(input_channels = gl_channels2, keep_prob = 0.8)
-        # self.comp3 = compress(input_channels = gl_channels3, keep_prob = 0.8)
-        # self.comp4 = compress(input_channels = gl_channels4, keep_prob = 0.8)
-
-        self.fc = nn.Linear(in_features = (gl_channels1 + gl_channels2 + gl_channels3 + gl_channels4) // 2, out_features = 1000)
+        self.fc = nn.Linear(in_features=sum(list_gb_channel) // 2, out_features=1000)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -224,33 +203,14 @@ class CliqueNet(nn.Module):
 
         feature_I_list = []
 
-
         # use stage II + stage II mode 
         for i in xrange(self.block_num):
             block_feature_I, block_feature_II = self.list_block[i](output)
             block_feature_I = self.list_compress[i](block_feature_I)
             feature_I_list.append(self.list_gb[i](block_feature_I))
-            output = self.list_trans[i](block_feature_II)
+            if i < self.block_num - 1:
+                output = self.list_trans[i](block_feature_II)
 
-
-        # block_feature_I, block_feature_II = self.block1(output)
-        # block_feature_I = self.comp1(block_feature_I)
-        # feature_I_list.append(self.gp1(block_feature_I))
-        # trans = self.trans1(block_feature_II)
-
-        # block_feature_I, block_feature_II = self.block2(trans)
-        # block_feature_I = self.comp2(block_feature_I)
-        # feature_I_list.append(self.gp2(block_feature_I))
-        # trans = self.trans2(block_feature_II)
-
-        # block_feature_I, block_feature_II = self.block3(trans)
-        # block_feature_I = self.comp3(block_feature_I)
-        # feature_I_list.append(self.gp3(block_feature_I))
-        # trans = self.trans3(block_feature_II)
-
-        # block_feature_I, block_feature_II = self.block4(trans)
-        # block_feature_I = self.comp4(block_feature_I)
-        # feature_I_list.append(self.gp4(block_feature_I))
 
         final_feature = feature_I_list[0]
         for block_id in range(1, len(feature_I_list)):

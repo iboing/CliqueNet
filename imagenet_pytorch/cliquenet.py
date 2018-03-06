@@ -25,6 +25,7 @@ class cliquenet(nn.Module):
         self.list_compress = nn.ModuleList()
         input_size_init = 56
 
+        # construct each block by clique_block
         for i in xrange(self.block_num):
             if i == 0:
                 self.list_block.append(clique_block(input_channels=input_channels, channels_per_layer=list_channels[0], layer_num=list_layer_num[0], loop_num=1, keep_prob=0.8))
@@ -58,7 +59,6 @@ class cliquenet(nn.Module):
         output = self.fir_pool(output)
 
         feature_I_list = []
-
 
         # use stage II + stage II mode 
         for i in xrange(self.block_num):
