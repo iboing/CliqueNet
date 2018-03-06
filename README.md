@@ -134,6 +134,7 @@ Note that the result of DenseNet(k=12, T=36) is reported by original paper. The 
 Our code for experiments on ImageNet with TensorFlow will be released soon.
 
 Here we provide a [PyTorch](http://pytorch.org) version to train a CliqueNet on ImageNet. An example to train:
+
 ```Python
 python train_imagenet.py [path to the imagenet dataset]
 ```
