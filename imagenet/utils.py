@@ -55,9 +55,9 @@ class compress(nn.Module):
         # output = F.dropout2d(output, 1 - self.keep_prob)
         return output
 
-class Clique_block(nn.Module):
+class clique_block(nn.Module):
     def __init__(self, input_channels, channels_per_layer, layer_num, loop_num, keep_prob):
-        super(Clique_block, self).__init__()
+        super(clique_block, self).__init__()
         self.input_channels = input_channels
         self.channels_per_layer = channels_per_layer
         self.layer_num = layer_num
@@ -216,7 +216,7 @@ class CliqueNet(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self, x):
-        # pdb.set_trace()
+
         output = self.fir_trans(x)
         output = self.fir_bn(output)
         output = F.relu(output)
@@ -224,38 +224,38 @@ class CliqueNet(nn.Module):
 
         feature_I_list = []
 
+
+        # use stage II + stage II mode 
         for i in xrange(self.block_num):
-            block_feature_I, block_feature_II = self.block1(output)
-             block_feature_I = self.comp1(block_feature_I)
-        feature_I_list.append(self.gp1(block_feature_I))
-        trans = self.trans1(block_feature_II)
+            block_feature_I, block_feature_II = self.list_block[i](output)
+            block_feature_I = self.list_compress[i](block_feature_I)
+            feature_I_list.append(self.list_gb[i](block_feature_I))
+            output = self.list_trans[i](block_feature_II)
 
 
-        block_feature_I, block_feature_II = self.block1(output)
-        block_feature_I = self.comp1(block_feature_I)
-        feature_I_list.append(self.gp1(block_feature_I))
-        trans = self.trans1(block_feature_II)
+        # block_feature_I, block_feature_II = self.block1(output)
+        # block_feature_I = self.comp1(block_feature_I)
+        # feature_I_list.append(self.gp1(block_feature_I))
+        # trans = self.trans1(block_feature_II)
 
-        block_feature_I, block_feature_II = self.block2(trans)
-        block_feature_I = self.comp2(block_feature_I)
-        feature_I_list.append(self.gp2(block_feature_I))
-        trans = self.trans2(block_feature_II)
+        # block_feature_I, block_feature_II = self.block2(trans)
+        # block_feature_I = self.comp2(block_feature_I)
+        # feature_I_list.append(self.gp2(block_feature_I))
+        # trans = self.trans2(block_feature_II)
 
-        block_feature_I, block_feature_II = self.block3(trans)
-        block_feature_I = self.comp3(block_feature_I)
-        feature_I_list.append(self.gp3(block_feature_I))
-        trans = self.trans3(block_feature_II)
+        # block_feature_I, block_feature_II = self.block3(trans)
+        # block_feature_I = self.comp3(block_feature_I)
+        # feature_I_list.append(self.gp3(block_feature_I))
+        # trans = self.trans3(block_feature_II)
 
-        block_feature_I, block_feature_II = self.block4(trans)
-        block_feature_I = self.comp4(block_feature_I)
-        feature_I_list.append(self.gp4(block_feature_I))
+        # block_feature_I, block_feature_II = self.block4(trans)
+        # block_feature_I = self.comp4(block_feature_I)
+        # feature_I_list.append(self.gp4(block_feature_I))
 
         final_feature = feature_I_list[0]
         for block_id in range(1, len(feature_I_list)):
             final_feature=torch.cat((final_feature, feature_I_list[block_id]), 1)
         
         final_feature = final_feature.view(final_feature.size()[0], final_feature.size()[1])
-        # pdb.set_trace()
         output = self.fc(final_feature)
         return output
-        # return F.log_softmax(output)

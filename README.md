@@ -131,4 +131,9 @@ Note that the result of DenseNet(k=12, T=36) is reported by original paper. The 
 
 ## Results on ImageNet
 
-to update
+- Our experiments of ImageNet are conducted with [Pytorch](http://pytorch.org) in Python 2.
+- The code is in the `imagenet` file.
+- An example to train a model on ImageNet:
+```bash
+python train.py --gpu [gpu id] --dataset [cifar-10 or cifar-100 or SVHN] --k [filters per layer] --T [all layers of three blocks] --dir [path to save models]
+```
