@@ -120,7 +120,7 @@ def main():
         validate(val_loader, model, criterion)
         return
 
-    # get_number_of_param(model)
+    get_number_of_param(model)
     
     for epoch in range(args.start_epoch, args.epochs):
         adjust_learning_rate(optimizer, epoch)
