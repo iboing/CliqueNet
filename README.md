@@ -19,7 +19,7 @@ If you find CliqueNet useful in your research, please consider citing:
 - [Introduction](#introduction)
 - [Usage](#usage)
 - [Ablation experiments](#ablation-experiments)
-- [Comparision with state of the arts](#comparision-with-state-of-the-arts)
+- [Comparison with state of the arts](#comparision-with-state-of-the-arts)
 - [Results on ImageNet](#results-on-imagenet)
 
 ## Introduction
@@ -94,7 +94,7 @@ from models.cliquenet_X import build_model
 ```
 and set the value of `X` in `./models/cliquenet_X.py`
 
-## Comparision with state of the arts
+## Comparison with state of the arts
 
 The results listed below demonstrate the superiority of CliqueNet over DenseNet when there are no additional techniques (bottleneck, compression, etc.).
 
