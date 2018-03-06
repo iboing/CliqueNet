@@ -1,7 +1,7 @@
 # CliqueNet
 
 
-This repository is for the paper [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018),
+This repository is for [Convolutional Neural Networks with Alternately Updated Clique](https://arxiv.org/abs/1802.10419) (to appear in CVPR 2018, Oral presentation),
 
 by Yibo Yang, Zhisheng Zhong, Tiancheng Shen, and [Zhouchen Lin](http://www.cis.pku.edu.cn/faculty/vision/zlin/zlin.htm).
 
@@ -133,7 +133,7 @@ Note that the result of DenseNet(k=12, T=36) is reported by original paper. The 
 ## Results on ImageNet
 Our code for experiments on ImageNet with TensorFlow will be released soon.
 
-Here we provide a [PyTorch](http://pytorch.org) version to train a CliqueNet on ImageNet. An example to train:
+Here we provide a [PyTorch](http://pytorch.org) version to train a CliqueNet on ImageNet. An example to run:
 
 ```Python
 python train_imagenet.py [path to the imagenet dataset]
