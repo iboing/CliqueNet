@@ -16,8 +16,8 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
 
-import utils
-import cliquenet
+import imagenet_pytorch.utils
+import imagenet_pytorch.cliquenet
 
 
 parser = argparse.ArgumentParser(description='CliqueNet ImageNet Training')
@@ -35,7 +35,7 @@ parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 
 parser.add_argument('-b', '--batch-size', default=160, type=int,
-                    metavar='N', help='mini-batch size (default: 200)')
+                    metavar='N', help='mini-batch size (default: 160)')
 
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate (default: 0.1)')
