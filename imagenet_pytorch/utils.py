@@ -149,7 +149,7 @@ class clique_block(nn.Module):
         
         block_feature_II = self.blob_dict_list[self.loop_num]['1']
         for layer_id in range(2, self.layer_num + 1):
-            block_feature_II = torch.cat((block_feature_II, self.blob_dict_list[self.layer_num][str(layer_id)]), 1)    
+            block_feature_II = torch.cat((block_feature_II, self.blob_dict_list[self.loop_num][str(layer_id)]), 1)    
         return block_feature_I, block_feature_II
 
 class CliqueNet(nn.Module):
