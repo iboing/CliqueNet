@@ -343,11 +343,11 @@ def loop_block_I_II(input_layer, if_b, channels_per_layer, layer_num, is_train, 
     
     stage_I = blob_dict_list[0]['1']
     for layer_id in range(2, layer_num+1):
-        stage_I=tf.concat((stage_I, blob_dict[str(layer_id)]), axis=3)     
+        stage_I=tf.concat((stage_I, blob_dict_list[0][str(layer_id)]), axis=3)     
               
     stage_II = blob_dict_list[1]['1']
     for layer_id in range(2, layer_num+1):
-        stage_II=tf.concat((stage_II, blob_dict[str(layer_id)]), axis=3)        
+        stage_II=tf.concat((stage_II, blob_dict_list[1][str(layer_id)]), axis=3)        
                   
     block_feature = tf.concat((input_layer, stage_I), axis=3)
     transit_feature = stage_II
