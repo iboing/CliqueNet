@@ -56,17 +56,20 @@ parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
 
 parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                     help='use pre-trained model')
+parser.add_argument('--no-attention', dest='attention', action='store_false', help='not use attentional transition')
+parser.set_defaults(attention=True)
 
 best_prec1 = 0
 
 
 def main():
-    
+
     global args, best_prec1
     args = parser.parse_args()
-
+    if args.attention:
+        print 'attentional transition is used'
     # create model
-    model = cliquenet.cliquenet_s1()
+    model = cliquenet.build_cliquenet(input_channels=64, list_channels=[40, 80, 160, 160], list_layer_num=[6, 6, 6, 6], if_att=args.attention)
     model = torch.nn.DataParallel(model).cuda()
 
     # define loss function (criterion) and optimizer
@@ -121,7 +124,7 @@ def main():
         return
 
     # get_number_of_param(model)
-    
+
     for epoch in range(args.start_epoch, args.epochs):
         adjust_learning_rate(optimizer, epoch)
 
