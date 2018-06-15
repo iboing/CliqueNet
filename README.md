@@ -139,4 +139,5 @@ Here we provide a [PyTorch](http://pytorch.org) version to train a CliqueNet on 
 python train_imagenet.py [path to the imagenet dataset]
 ```
 (As the default, CliqueNet-S3 is trained, batchsize is 160 and attentional transition is used.)
+
 The PyTorch pre-trained model can be downloaded here (Google Drive): [S3_model](https://drive.google.com/file/d/1fvaSSiy590reWK0a0mNSJqmkr4yCqpI-/view?usp=sharing).
